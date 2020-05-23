@@ -8,19 +8,22 @@
     <!-- Define Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <!-- Define font awesome-->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
     <!-- sweetalert -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
 
     <!-- Style -->
     <style>
-        body{
+        body {
             height: 100vh;
             overflow: hidden;
         }
-        
-        
-        #particles-js{
+
+
+        #particles-js {
             height: 100vh;
             width: 100%;
             background-color: black;
@@ -28,34 +31,27 @@
             position: absolute;
         }
 
-        #test{
+        #test {
             height: 100vh;
         }
 
-        #clock{
-            font-size:120pt;
+        #clock {
+            font-size: 120pt;
             color: white;
         }
 
-        #harinya{
-            font-size:25pt;
-            color: white;
-        }
-        
-        #textnya{
+        #harinya {
+            font-size: 25pt;
             color: white;
         }
 
-        @media screen and (max-width:960px){
-            #clock{
-                font-size:60pt !important;
-            }
+        #textnya {
+            color: white;
         }
 
-        button.swal2-cancel.btn.btn-danger{
+        button.swal2-cancel.btn.btn-danger {
             margin-right: 5%;
         }
-
     </style>
 </head>
 
@@ -64,14 +60,15 @@
     <div class="container-fluid px-0" id="test">
         <div class="row align-items-center h-100">
             <div class="col-6 mx-auto">
-                <div id="harinya" class="text-center text-xs-center"></div>
+                <div id="harinya" class="text-center"></div>
                 <div id="clock" class="text-center">
                 </div>
                 <div id="textnya" class="text-center">
                 </div>
 
                 <div id="secretButton" class="text-center mt-4">
-                    <button type="button" id="rahasiatombol" class="btn btn-lg btn-outline-light">Click Here for Some Little Surprise</button>
+                    <button type="button" id="rahasiatombol" class="btn btn-lg btn-outline-light">Click Here for Some
+                        Little Surprise</button>
                 </div>
             </div>
         </div>
@@ -90,6 +87,9 @@
 <!-- Sweetalert-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
 
+<!-- baffle -->
+<script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
+
 <!-- init particle js -->
 <script>
     particlesJS.load('particles-js', 'particles.json', function () {
@@ -107,7 +107,7 @@
         var h = today.getHours();
         var m = today.getMinutes();
         var s = today.getSeconds();
-        
+
         m = checkTime(m);
         s = checkTime(s);
 
@@ -129,24 +129,40 @@
 
         document.getElementById('clock').innerHTML =
             h + ":" + m + ":" + s;
-        document.getElementById('harinya').innerHTML = t+" "+bulan+" "+y;
+        document.getElementById('harinya').innerHTML = t + " " + bulan + " " + y;
         var t = setTimeout(startTime, 500);
 
         Jam = h;
         Menit = m;
         Detik = s;
 
-        if(Jam>=0){
-            document.getElementById('textnya').innerHTML = "Selamat Dini Hari <i class='fa fa-heart'></i>";
-        }else if(Jam>=5){
-            document.getElementById('textnya').innerHTML = "Selamat Pagi <i class='fa fa-heart'></i>";
-        }else if(Jam>=12){
-            document.getElementById('textnya').innerHTML = "Selamat Siang <i class='fa fa-heart'></i>";
-        }else if(Jam>=3){
-            document.getElementById('textnya').innerHTML = "Selamat Sore <i class='fa fa-heart'></i>";
-        }else if(Jam>=7){
-            document.getElementById('textnya').innerHTML = "Selamat Malam <i class='fa fa-heart'></i>";
+        if (Jam >= 0) {
+            text = "Selamat Dini Hari ❤️";
+            // document.getElementById('textnya').innerHTML = text;
+        } else if (Jam >= 5) {
+            text = "Selamat Pagi ❤️";
+            // document.getElementById('textnya').innerHTML = text;
+        } else if (Jam >= 12) {
+            text = "Selamat Siang ❤️";
+            // document.getElementById('textnya').innerHTML = text;
+        } else if (Jam >= 3) {
+            text = "Selamat Sore ❤️";
+            // document.getElementById('textnya').innerHTML = text;
+        } else if (Jam >= 7) {
+            text = "Selamat Malam ❤️";
+            // document.getElementById('textnya').innerHTML = text;
         }
+    }
+
+    var i = 0;
+    var speed = 100;
+    
+    function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("textnya").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
     }
 
     function checkTime(i) {
@@ -155,46 +171,47 @@
         };
         return i;
     }
-    
+
     startTime();
+    typeWriter();
 </script>
 
 <script type="text/javascript">
-    $("#rahasiatombol").on('click',function(){
+    $("#rahasiatombol").on('click', function () {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
                 cancelButton: 'btn btn-danger'
             },
             buttonsStyling: false
-            })
+        })
 
-            swalWithBootstrapButtons.fire({
+        swalWithBootstrapButtons.fire({
             title: 'Will You be My Girlfriend?',
             text: "",
             type: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Ya <i class="fa fa-heart"></i>',
-            cancelButtonText: 'Tidak <i class="fa fa-sad-cry"></i>',
+            confirmButtonText: 'Ya ❤️',
+            cancelButtonText: 'Tidak 😭',
             reverseButtons: true
-            }).then((result) => {
+        }).then((result) => {
             if (result.value) {
                 swalWithBootstrapButtons.fire(
-                'Thank you! <i class="fa fa-heart"></i>',
-                'Ingat Screenshot pilihanmu, kirim ke aku',
-                'success'
+                    'Thank you! ❤️',
+                    'Ingat Screenshot pilihanmu, kirim ke aku',
+                    'success'
                 )
             } else if (
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
-                'Ditolak',
-                'Yah sayang sekali :(',
-                'error'
+                    'Ditolak',
+                    'Yah sayang sekali 😭',
+                    'error'
                 )
             }
-            })
+        })
     });
-
 </script>
+
 </html>

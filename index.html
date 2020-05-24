@@ -145,19 +145,19 @@
         Menit = m;
         Detik = s;
 
-        if (Jam >= 0) {
+        if (Jam >= 1 && Jam <5) {
             text = "Selamat Dini Hari ❤️";
             // document.getElementById('textnya').innerHTML = text;
-        } else if (Jam >= 5) {
+        } else if (Jam >= 5 && Jam<12) {
             text = "Selamat Pagi ❤️";
             // document.getElementById('textnya').innerHTML = text;
-        } else if (Jam >= 12) {
+        } else if (Jam >= 12 && Jam<15) {
             text = "Selamat Siang ❤️";
             // document.getElementById('textnya').innerHTML = text;
-        } else if (Jam >= 3) {
+        } else if (Jam >= 15 && Jam<19) {
             text = "Selamat Sore ❤️";
             // document.getElementById('textnya').innerHTML = text;
-        } else if (Jam >= 7) {
+        } else if (Jam >= 19 || Jam==0) {
             text = "Selamat Malam ❤️";
             // document.getElementById('textnya').innerHTML = text;
         }
